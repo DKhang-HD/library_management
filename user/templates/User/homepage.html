@@ -1,0 +1,28 @@
+{% load static %}
+<img src="{% static 'User/images/Logo.png' %}" width = "300" height="200">
+<h1>Homepage</h1>
+<body>
+    <h2> Welcome to the homepage</h2>
+    <!--user who is loging-->
+    {% if user.is_authenticated %}
+        <p>Welcome, {{user.username}}</p>
+        {% if perms.User.add_User %}
+			<p> This is list of user, you can specify permission for them </p>
+			<ul>
+				{% for user_ in list_user %}
+                    {% if not user_.id is user.id%}
+<!--                        {% if not user_.Catalog.view_category %}-->
+                            <li> <a href="{% url 'User:permission' user_.id %}">{{user_.username}}</a> </li>
+<!--                        {% endif %}-->
+                    {% endif %}
+				{% endfor %}
+			</ul>
+		{% endif %}
+        <p> You visit this page {{user.view_homepage}} times.</p>
+        <p>Comeback to your <a href="{% url 'Catalog:catalog_page' %}">Catalog page</a></p>
+        <p> <a href="{% url 'logout' %}">Logout</a> </p>
+    {% else %}
+    <p> You can <a href="{% url 'login' %}">login</a> here </p>
+    <p> Click to <a href="{% url 'User:signup' %}">register</a> if you don't already have an account </p>
+    {% endif %}
+</body>

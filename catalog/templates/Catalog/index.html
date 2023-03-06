@@ -1,0 +1,11 @@
+<h1>Local Library Home</h1>
+  <p>Welcome to LocalLibrary</p>
+  <h2>Dynamic content</h2>
+  <p>The library has the following record counts:</p>
+  <ul>
+    <li><a href="{% url 'Catalog:catalog_page' %}"><strong>Books:</strong></a> {{ num_books }}</li>
+    <li><a href="{% url 'Catalog:catalog_page' %}"><strong>Copies:</strong></a> {{ num_instances }}</li>
+    <li><strong>Copies available:</strong> {{ num_instances_available }}</li>
+    <li><strong>Authors:</strong> {{ num_authors }}</li>
+  </ul>
+  <a href="{% url 'Catalog:borrowed_book' %}">See your borrowed book</a>

@@ -1,0 +1,15 @@
+<h1>Borrowed books</h1>
+    {% if bookinstance_list %}
+    <ul>
+
+      {% for bookInstance in bookinstance_list %}
+      <li>
+        {{ bookInstance.book.title }} ({{ bookInstance.due_back }})
+      </li>
+      {% endfor %}
+    </ul>
+
+    {% else %}
+      <p>There are no books borrowed.</p>
+    {% endif %}
+    <a href="{% url 'Catalog:homepage' %}">Back to the homepage</a>

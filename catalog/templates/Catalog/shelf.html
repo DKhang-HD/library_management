@@ -1,0 +1,35 @@
+<html>
+<h1> This list of {{category.type}} </h1>
+    <h2><a href="{% url 'Catalog:upload_product' %}">Upload Books</a></h2>
+        <ul>
+        {% for product in product_per_page %}
+            <li>
+                <h3><em>Name of book:</em> {{product.name}}</h3>
+                <p><em>Public date:</em> {{product.pub_date}}</p>
+                <p><em>Author:</em> {{product.author}}</p>
+                <p><em>Price:</em> {{product.price}}</p>
+                <p><img src="{{product.picture.url }}"  width="400" height="500"></p>
+                <p>
+                    <a href="{% url 'Catalog:update_product' product.id%}">edit</a>
+                    <a href="{% url 'Catalog:delete_product' product.id%}">delete</a>
+                </p>
+
+            </li>
+        {% endfor %}
+        </ul>
+        <p>Go <a href="{% url 'Catalog:catalog_page' %}">back</a></p>
+
+    <hr><br/><br/>
+        {% if product_per_page.has_previous %}
+            <a href="?page=1"> &laquo First</a>
+            <a href="?page={{product_per_page.previous_page_number}}">Previous</a>
+        {% endif %}
+
+        Page {{product_per_page.number}} of {{product_per_page.paginator.num_pages}}
+
+        {% if product_per_page.has_next %}
+            <a href="?page={{product_per_page.next_page_number}}">Next</a>
+            <a href="?page={{product_per_page.paginator.num_pages}}">Last &raquo</a>
+        {% endif %}
+
+</html>

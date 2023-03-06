@@ -1,0 +1,8 @@
+<html>
+<h1> Upload Book </h1>
+    <form method = 'POST' enctype="multipart/form-data">
+        {% csrf_token %}
+        <p>{{upload_form.as_p}}</p>
+        <button type="submit" >Submit</button>
+    </form>
+</html>
